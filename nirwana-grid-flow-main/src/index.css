@@ -1,0 +1,585 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NirwanaGrid Design System - Tech-inspired energy management theme
+All colors MUST be HSL and based on NirwanaGrid brand colors (blue and green).
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Clean white background with tech-inspired foreground */
+    --background: 0 0% 100%;
+    --foreground: 210 15% 15%;
+
+    /* Card system - Subtle elevation with clean backgrounds */
+    --card: 0 0% 100%;
+    --card-foreground: 210 15% 15%;
+
+    /* Popover system */
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 15%;
+
+    /* Primary - NirwanaGrid blue theme */
+    --primary: 204 87% 54%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 204 87% 64%;
+    --primary-dark: 204 87% 44%;
+
+    /* Secondary - NirwanaGrid green theme */
+    --secondary: 88 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 88 65% 65%;
+    --secondary-dark: 88 65% 45%;
+
+    /* Tech-inspired accent colors */
+    --accent: 204 20% 96%;
+    --accent-foreground: 204 87% 54%;
+
+    /* Muted colors for subtle elements */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 15% 55%;
+
+    /* Utility colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border and input styling */
+    --border: 214 20% 90%;
+    --input: 214 20% 90%;
+    --ring: 204 87% 54%;
+
+    /* Design system variables */
+    --radius: 0.75rem;
+
+    /* NirwanaGrid custom design tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    --tech-gradient: linear-gradient(135deg, hsl(var(--primary-light)) 0%, hsl(var(--primary-dark)) 100%);
+    --card-shadow: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    --card-shadow-hover: 0 8px 30px -4px hsl(var(--primary) / 0.15);
+    --energy-glow: 0 0 20px hsl(var(--secondary) / 0.3);
+    
+    /* Animation variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --animation-duration: 0.6s;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode - Tech-inspired dark theme */
+    --background: 210 25% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 210 25% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 210 25% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 204 87% 64%;
+    --primary-foreground: 210 25% 8%;
+    --primary-light: 204 87% 74%;
+    --primary-dark: 204 87% 54%;
+
+    --secondary: 88 65% 65%;
+    --secondary-foreground: 210 25% 8%;
+    --secondary-light: 88 65% 75%;
+    --secondary-dark: 88 65% 55%;
+
+    --accent: 210 25% 15%;
+    --accent-foreground: 204 87% 64%;
+
+    --muted: 210 25% 15%;
+    --muted-foreground: 215 15% 65%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 25% 20%;
+    --input: 210 25% 20%;
+    --ring: 204 87% 64%;
+
+    /* Dark mode custom tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(var(--primary-dark)) 0%, hsl(var(--secondary-dark)) 100%);
+    --tech-gradient: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 100%);
+    --card-shadow: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --card-shadow-hover: 0 8px 30px -4px hsl(0 0% 0% / 0.4);
+    --energy-glow: 0 0 20px hsl(var(--secondary) / 0.4);
+
+    --sidebar-background: 210 25% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 204 87% 64%;
+    --sidebar-primary-foreground: 210 25% 8%;
+    --sidebar-accent: 210 25% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 210 25% 20%;
+    --sidebar-ring: 204 87% 64%;
+  }
+}
+
+@layer base {
+  :root {
+    /* Force dark theme for entire website */
+    color-scheme: dark;
+  }
+  
+  /* Apply dark theme by default */
+  html {
+    @apply dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hero section styling */
+  .hero-section {
+    @apply bg-gradient-to-br from-background via-accent/30 to-background;
+    background-image: var(--hero-gradient);
+    background-blend-mode: overlay;
+  }
+
+  /* Animated elements */
+  .animate-fade-in-up {
+    @apply opacity-0 translate-y-8;
+    animation: fadeInUp var(--animation-duration) ease-out forwards;
+  }
+
+  .animate-fade-in-left {
+    @apply opacity-0 -translate-x-8;
+    animation: fadeInLeft var(--animation-duration) ease-out forwards;
+  }
+
+  .animate-fade-in-right {
+    @apply opacity-0 translate-x-8;
+    animation: fadeInRight var(--animation-duration) ease-out forwards;
+  }
+
+  .animate-scale-in {
+    @apply opacity-0 scale-95;
+    animation: scaleIn var(--animation-duration) ease-out forwards;
+  }
+
+  /* Advanced Animation Classes */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-icon-dance {
+    animation: iconDance 4s ease-in-out infinite;
+  }
+
+  .animate-icon-pulse {
+    animation: iconPulse 2s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: floatMedium 6s ease-in-out infinite;
+  }
+
+  .animate-float-fast {
+    animation: floatFast 4s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spinSlow 10s linear infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounceSlow 3s ease-in-out infinite;
+  }
+
+  .animate-slide-x {
+    animation: slideX 15s linear infinite;
+  }
+
+  .animate-slide-y {
+    animation: slideY 12s linear infinite;
+  }
+
+  .animate-grid-move {
+    animation: gridMove 20s ease-in-out infinite alternate;
+  }
+
+  .animate-simple-float {
+    animation: simpleFloat 3s ease-in-out infinite;
+  }
+
+  /* Energy-themed animations */
+  .animate-energy-wave {
+    animation: energyWave 4s linear infinite;
+  }
+
+  .animate-energy-wave-reverse {
+    animation: energyWaveReverse 4s linear infinite;
+  }
+
+  .animate-energy-pulse {
+    animation: energyPulse 2s ease-in-out infinite;
+  }
+
+  .animate-electrical-zap {
+    animation: electricalZap 3s ease-in-out infinite;
+  }
+
+  .animate-electrical-zap-reverse {
+    animation: electricalZapReverse 3s ease-in-out infinite;
+  }
+
+  .animate-energy-ring {
+    animation: energyRing 4s linear infinite;
+  }
+
+  .animate-energy-ring-reverse {
+    animation: energyRingReverse 4s linear infinite;
+  }
+
+  /* Stagger animation delays */
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; }
+  .animate-delay-600 { animation-delay: 0.6s; }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+    box-shadow: var(--card-shadow);
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-2;
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  /* Energy glow effect */
+  .energy-glow {
+    box-shadow: var(--energy-glow);
+  }
+
+  /* Tech grid pattern */
+  .tech-pattern {
+    background-image: radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  /* Social link hover effects */
+  .social-link {
+    @apply transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1;
+  }
+
+  /* Button animations */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary-dark;
+    transition: var(--transition-smooth);
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary-dark;
+    transition: var(--transition-smooth);
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground;
+    transition: var(--transition-smooth);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes iconDance {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+}
+
+@keyframes floatMedium {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) translateX(8px) rotate(180deg);
+  }
+}
+
+@keyframes floatFast {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-25px) scale(1.2);
+  }
+}
+
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideX {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes slideY {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  100% {
+    transform: translateX(20px) translateY(20px);
+  }
+}
+
+@keyframes simpleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes energyWave {
+  0% {
+    transform: translateX(-100%) scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes energyWaveReverse {
+  0% {
+    transform: translateX(100%) scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%) scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes energyPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 1;
+  }
+}
+
+@keyframes electricalZap {
+  0%, 100% {
+    transform: scaleX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    transform: scaleX(0.3) rotate(2deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(1) rotate(-1deg);
+    opacity: 0.8;
+  }
+  90% {
+    transform: scaleX(0.3) rotate(1deg);
+    opacity: 1;
+  }
+}
+
+@keyframes electricalZapReverse {
+  0%, 100% {
+    transform: scaleX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    transform: scaleX(0.3) rotate(-2deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(1) rotate(1deg);
+    opacity: 0.8;
+  }
+  90% {
+    transform: scaleX(0.3) rotate(-1deg);
+    opacity: 1;
+  }
+}
+
+@keyframes energyRing {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes energyRingReverse {
+  0% {
+    transform: scale(2) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.5) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* Logo specific styles */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
