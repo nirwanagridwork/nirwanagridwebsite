@@ -23,10 +23,7 @@ interface CartItem {
 
 const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    { id: '1', name: 'Smart Energy Monitor', price: 299, quantity: 1 },
-    { id: '2', name: 'Solar Panel Kit', price: 1200, quantity: 2 },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
